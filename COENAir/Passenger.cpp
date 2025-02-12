@@ -34,6 +34,8 @@ std::string Passenger::getID() {
 
 void Passenger::setFirstName(std::string FN) {
 	firstName = FN;
+
+	return;
 }
 
 std::string Passenger::getFirstName() {
@@ -42,6 +44,8 @@ std::string Passenger::getFirstName() {
 
 void Passenger::setLastName(std::string LN) {
 	lastName = LN;
+
+	return;
 }
 
 std::string Passenger::getLastName() {
@@ -50,6 +54,8 @@ std::string Passenger::getLastName() {
 
 void Passenger::setAddress(std::string AD) {
 	address = AD;
+
+	return;
 }
 
 std::string Passenger::getAddress() {
@@ -58,6 +64,8 @@ std::string Passenger::getAddress() {
 
 void Passenger::setEmail(std::string EM) {
 	email = EM;
+
+	return;
 }
 
 std::string Passenger::getEmail() {
@@ -66,4 +74,6 @@ std::string Passenger::getEmail() {
 
 void Passenger::printPassenger() { //prints the private data of the defined Passenger object
 	std::cout << "\nProfile of passenger " + ID + ": \n\tFirst Name: " + firstName + "\n\tLast Name: " + lastName + "\n\tAddress: " + address + "\n\tEmail: " + email;
+
+	return;
 }
