@@ -130,9 +130,11 @@
     <ClCompile Include="Airline.cpp" />
     <ClCompile Include="Date.cpp" />
     <ClCompile Include="Flight.cpp" />
+    <ClCompile Include="TestAirline.cpp" />
     <ClCompile Include="Time.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Airline.h" />
     <ClInclude Include="Date.h" />
     <ClInclude Include="Flight.h" />
     <ClInclude Include="Time.h" />
