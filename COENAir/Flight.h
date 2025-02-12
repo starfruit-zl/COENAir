@@ -9,6 +9,7 @@ using namespace std;
 #define FLIGHT
 class Flight{
 private:
+	static unsigned int globalID;
 	string ID;
 	string departureCity;
 	string arrivalCity;
@@ -17,10 +18,20 @@ private:
 	unsigned int duration;
 
 public:
-	Flight(string id = {}, string dc = {}, string ac = {}, Date depart, Date arrival);
+	Flight(string dc = {}, string ac = {}, Date& depart, Date& arrival);
 	~Flight();
-
-
+	Flight(Flight&);
+	string getID();
+	string getDepartureCity();
+	string getArrivalCity();
+	Date getDepartureDate();
+	Date getArrivalDate();
+	unsigned int getDuration();
+	void setDepartureCity(string&);
+	void setArrivalCity(string&);
+	void setDepartureDate(Date&);
+	void setArrivalDate(Date&);
+	void setDuration(unsigned int);
 };
 
 #endif // FLIGHT
