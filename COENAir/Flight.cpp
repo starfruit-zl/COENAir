@@ -9,3 +9,15 @@ Flight::Flight(string id, string dc, string ac, Date depart, Date arrival): ID(i
 
 Flight::~Flight(){}
 
+string Flight::getID() {
+	return ID;
+}
+
+string Flight::getdepartureCity() {
+	return departureCity;
+}
+
+string Flight::getarrivalCity() {
+	return arrivalCity;
+}
+

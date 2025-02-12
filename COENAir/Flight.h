@@ -19,7 +19,9 @@ private:
 public:
 	Flight(string id = {}, string dc = {}, string ac = {}, Date depart, Date arrival);
 	~Flight();
-
+	string getID();
+	string getdepartureCity();
+	string getarrivalCity();
 };
 
 #endif // FLIGHT
