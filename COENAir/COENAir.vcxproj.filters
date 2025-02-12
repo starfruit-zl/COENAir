@@ -18,5 +18,13 @@
     <ClCompile Include="TestPassenger.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Passenger.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Passenger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
