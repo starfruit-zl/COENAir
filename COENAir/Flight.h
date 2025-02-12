@@ -20,7 +20,6 @@ public:
 	Flight(string id = {}, string dc = {}, string ac = {}, Date depart, Date arrival);
 	~Flight();
 
-
 };
 
 #endif // FLIGHT
