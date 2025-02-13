@@ -8,15 +8,6 @@ using namespace std;
 
 unsigned int Flight::globalID(1);
 
-Flight::Flight() {
-	ID = "-1";
-	departureCity = {};
-	arrivalCity = {};
-	departureDate = Date(0, 0, 0, 0, 0, 0);
-	arrivalDate = Date(0, 0, 0, 0, 0, 0);
-	duration = 0;
-}
-
 Flight::Flight(string dc, string ac, Date& depart, Date& arrival, unsigned int d): departureCity(dc), arrivalCity(ac), departureDate(depart), arrivalDate(arrival), duration(d) {
 	unsigned int id = globalID++;
 	ID = "COA" + to_string(id);
