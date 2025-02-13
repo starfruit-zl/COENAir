@@ -1,15 +1,14 @@
 #include <iostream>
 #include <string>
+#include "Flight.h"
 
 using namespace std;
 
+void testFlight(Flight& F, string id, string dc, string ac, Date& depart, Date& arrival) {
+	Flight 
+}
+
 int main() {
-	int s(0);
-	cout << "this might break things";
-	int p = 0;
-
-	std::cout << p << "lmao";
-
-
+	
 	return 0;
 }
