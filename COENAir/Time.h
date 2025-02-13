@@ -8,6 +8,7 @@ using namespace std;
 
 class Time { //class taken from moodle, as per instructed in assignment. Credits to professor Wahab Hamou-Lhadj.
 public:
+	Time();
 	void setTime(int h, int, int);
 	void printTime() const;
 

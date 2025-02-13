@@ -18,8 +18,9 @@ private:
 	unsigned int duration;
 
 public:
-	Flight(string dc = {}, string ac = {}, Date& depart, Date& arrival, unsigned int d = 0);
+	Flight(string dc = {}, string ac = {}, Date depart = (0,0,0,0,0,0), Date arrival = (0, 0, 0, 0, 0, 0), unsigned int d = 0);
 	Flight(Flight&);
+	~Flight();
 	string getID();
 	string getDepartureCity();
 	string getArrivalCity();

@@ -3,7 +3,6 @@
 
 
 Time::Time() {
-    cout << "Constructor Time() is called" << endl;
     hour = 0;
     minute = 0;
     second = 0;
