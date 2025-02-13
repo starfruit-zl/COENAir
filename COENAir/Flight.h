@@ -19,7 +19,7 @@ private:
 
 public:
 	Flight();
-	Flight(string dc = {}, string ac = {}, Date& depart, Date& arrival);
+	Flight(string dc = {}, string ac = {}, Date& depart, Date& arrival, unsigned int d = 0);
 	~Flight();
 	Flight(Flight&);
 	string getID();
