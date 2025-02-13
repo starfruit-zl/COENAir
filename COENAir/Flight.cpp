@@ -1,21 +1,11 @@
 #include <iostream>
 #include <string>
 
-#include "Date.h"
 #include "Flight.h"
 
 using namespace std;
 
 unsigned int Flight::globalID(1);
-
-Flight::Flight() {
-	ID = "-1";
-	departureCity = {};
-	arrivalCity = {};
-	departureDate = Date(0, 0, 0, 0, 0, 0);
-	arrivalDate = Date(0, 0, 0, 0, 0, 0);
-	duration = 0;
-}
 
 Flight::Flight(string dc, string ac, Date& depart, Date& arrival): departureCity(dc), arrivalCity(ac), departureDate(depart), arrivalDate(arrival) {
 	unsigned int id = globalID++;

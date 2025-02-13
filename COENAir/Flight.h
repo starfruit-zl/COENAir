@@ -18,7 +18,6 @@ private:
 	unsigned int duration;
 
 public:
-	Flight();
 	Flight(string dc = {}, string ac = {}, Date& depart, Date& arrival);
 	~Flight();
 	Flight(Flight&);
