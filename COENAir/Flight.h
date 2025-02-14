@@ -32,6 +32,7 @@ public:
 	void setDepartureDate(Date&);
 	void setArrivalDate(Date&);
 	void setDuration(unsigned int);
+	void printFlight();
 };
 
 #endif // FLIGHT
