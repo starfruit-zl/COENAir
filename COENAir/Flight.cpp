@@ -68,4 +68,12 @@ void Flight::setDuration(unsigned int D) {
 	duration = D;
 }
 
+void Flight::printFlight() {
+	std::cout << "\n" + ID + ": " + departureCity + " on "; 
+	
+	departureDate.printDate();
 
+	std::cout << arrivalCity + " on ";
+
+	arrivalDate.printDate();
+}
