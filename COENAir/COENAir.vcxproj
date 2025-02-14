@@ -129,7 +129,6 @@
   <ItemGroup>
     <ClCompile Include="Date.cpp" />
     <ClCompile Include="Flight.cpp" />
-    <ClCompile Include="TestFlight.cpp" />
     <ClCompile Include="Time.cpp" />
   </ItemGroup>
   <ItemGroup>
