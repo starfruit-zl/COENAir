@@ -1,8 +1,9 @@
 #pragma once
 #include "Flight.h"
+#include <vector>
 
-#ifndef FLIGHT_H
-#define FLIGHT_H
+#ifndef AIRLINE_H_
+#define AIRLINE_H_
 
 class Airline {
 private:
@@ -10,23 +11,23 @@ private:
 
 	std::string address;
 
-	//array or vector of Flight objects.
+	std::vector<Flight> flights;
 
 public:
 
-	Airline(std::string NC = {}, std::string AD = {}); //also array or vector of Flight objects.
+	Airline(std::string NC = {}, std::string AD = {}, std::vector<Flight> FL = {}); //also array or vector of Flight objects.
 
-	Airline(Airline&);
+	Airline(const Airline&);
 
 	~Airline();
 
 	void setName(std::string NC);
 
-	std::string getName(std::string NC);
+	std::string getName();
 
 	void setAddress(std::string AD);
 
-	std::string getAddress(std::string AD);
+	std::string getAddress();
 
 	void addFlight(const Flight&);
 

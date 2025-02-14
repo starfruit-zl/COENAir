@@ -1,15 +1,17 @@
 #include "Airline.h"
 
 
-Airline::Airline(std::string NC = {}, std::string AD = {}) {} //also array or vector of Flight objects.
+Airline::Airline(std::string NC, std::string AD, std::vector<Flight> FL) : nameCompany(NC), address(AD), flights(FL) {}
 
-Airline::Airline(Airline& a1) {
+Airline::Airline(const Airline& a1) {
 	nameCompany = a1.nameCompany;
 
 	address = a1.address;
 }
 
-Airline::~Airline();
+Airline::~Airline() {
+	
+}
 
 void Airline::setName(std::string NC) {
 	nameCompany = NC;
@@ -28,15 +30,57 @@ void Airline::setAddress(std::string AD) {
 }
 
 std::string Airline::getAddress() {
-	return getAddress;
+	return address;
 }
 
-void Airline::addFlight(const Flight&);
+void Airline::addFlight(const Flight& f1) {
 
-void Airline::removeFlight(std::string flightID);
+	flights.push_back(f1);
+}
 
-bool Airline::searchFlight(std::string flightID);
+void Airline::removeFlight(std::string flightID) {
+	
+	if(searchFlight(flightID))
+		for (int i; i <= flights.size(); i++)
+		if (flightID == flights[i].getID()) {
+			flights.erase(flights.begin() + i);
 
-void Airline::displayFlights();
+			return;
+		}
 
-void Airline::displayFlightsFromTo(std::string departure, std::string destination);
+	return;
+
+}
+
+bool Airline::searchFlight(std::string flightID) {
+
+	for (int i; i <= flights.size(); i++)
+		if (flightID == flights[i].getID())
+			return true;
+
+	return false;
+}
+
+void Airline::displayFlights() {
+	std::cout << "\n\nFlightID:\tDeparture City:\tDeparture Time:\tArrival City:\tArrival Time:";
+	for (int i; i <= flights.size(); i++)
+		flights[i].printFlight();
+}
+
+void Airline::displayFlightsFromTo(std::string departure, std::string destination) {
+	std::cout << "\n\nFlights from " + departure + " to " + destination;
+
+	bool notDisplayed = false;
+
+	for (int i; i <= flights.size(); i++)
+		if (flights[i].getDepartureCity() == departure)
+			if (flights[i].getArrivalCity() == destination) {
+				std::cout << '\n' + flights[i].getID();
+
+				if (notDisplayed) notDisplayed = true;
+			}
+
+	if (notDisplayed)std::cout << "\nNo flights are currently available.";
+	
+	return;
+}
