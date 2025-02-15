@@ -1,13 +1,6 @@
 #include "Time.h"
 #include <iostream>
-
-
-Time::Time() {
-    cout << "Constructor Time() is called" << endl;
-    hour = 0;
-    minute = 0;
-    second = 0;
-}
+#include <iomanip>
 
 void Time::setTime(int h, int m, int s) {
     hour = (h >= 0 && h < 24) ? h : 0;
@@ -16,5 +9,5 @@ void Time::setTime(int h, int m, int s) {
 }
 
 void Time::printTime() const {
-    cout << hour << ":" << minute << ":" << second << endl;
+    cout << std::setfill('0') << setw(2) << hour << ":" << setw(2) << minute << ":" << setw(2) << second << std::setfill(' '); //removed endl portion.
 }

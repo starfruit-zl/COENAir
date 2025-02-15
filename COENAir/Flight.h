@@ -1,5 +1,6 @@
 #pragma once
 #include "Date.h"
+#include "Time.h"
 #include <iostream>
 #include <string>
 
@@ -18,9 +19,11 @@ private:
 	unsigned int duration;
 
 public:
-	Flight(string dc = {}, string ac = {}, Date& depart, Date& arrival, unsigned int d = 0);
+	Date d1;
+	Flight();
+	Flight(string dc, string ac, unsigned int d, Date& depart, Date& arrival); //default constructor hated having objects set to default nulls, so unique null constructor nescessary.
 	~Flight();
-	Flight(Flight&);
+	Flight(const Flight&); //added const modifier to make code work, basically it requires the const to adapt to out of scoped returns. Stops re-allocation of memory.
 	string getID();
 	string getDepartureCity();
 	string getArrivalCity();
