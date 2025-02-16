@@ -134,13 +134,18 @@ Flight initializeFlight() {
 		dateStore.push_back(input);
 	}
 	Date d1(stoi(dateStore[0]), stoi(dateStore[1]), stoi(dateStore[2]), stoi(dateStore[3]), stoi(dateStore[4]), 0);
+	dateStore = {};
 	for (int i = 0; i < 5; i++) {
 		getline(date2, input, ' ');
 		dateStore.push_back(input);
 	}
 	Date d2(stoi(dateStore[0]), stoi(dateStore[1]), stoi(dateStore[2]), stoi(dateStore[3]), stoi(dateStore[4]), 0);
+	dateStore = {};
 
 	Flight f1(stringStore[0], stringStore[2], capacity, d1, d2);
+	
+	stringStore = {};
+	input = {};
 
 	return Flight(f1);
 }
