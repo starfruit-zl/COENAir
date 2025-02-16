@@ -39,9 +39,9 @@ int main() {
 	Date D1(1, 2, 3, 1, 2, 3);
 	unsigned int d(3);
 	Flight F1(dc, ac, D1, D1, d, pas), F2;
-	cout << "Testing Flight using test data (dates should be 1/2/3 1:2:3 :";
+	cout << "Testing Flight using test data (dates should be 1/2/3 1:2:3 : ";
 	testFlight(F1, "COA1", dc, ac, d, pas);
-	cout << "\nTesting Flight using test data (dates should be 0/0/0 0:0:0 :";
-	testFlight(F2, "COA2", {}, {}, {}, vector<Passenger>{});
+	cout << "\nTesting Flight using test data (dates should be 0/0/0 0:0:0 : ";
+	testFlight(F2, "COA2", {}, {}, {}, vector<Passenger> {});
 	return 0;
 }
