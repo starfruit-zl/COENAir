@@ -70,11 +70,20 @@ int main() {
 void dateInput(std::string& stringStore) {
 	std::string input;
 
-	if (stringStore.size() < 6) std::getline(std::cin, input, '/');
-	else if (stringStore.size() == 6) std::getline(std::cin, input, ' ');
-	else if (stringStore.size() == 9)std::getline(std::cin, input, ':');
-	else if (stringStore.size() == 12) std::getline(std::cin, input);
-
+	switch (stringStore.size()) {
+	case 6: 
+		std::getline(std::cin, input, ' ');
+		break;
+	case 9:
+		std::getline(std::cin, input, ':');
+		break;
+	case 12:
+		std::getline(std::cin, input);
+		break;
+	default:
+		std::getline(std::cin, input, '/');
+		break;
+	}
 	stringStore += input + " ";
 
 	if (stringStore.size() == 15) return;
@@ -111,9 +120,9 @@ Flight initializeFlight() {
 	while (true) {
 		std::cout << "\tCapacity of flight: ";
 		std::cin >> capacity;
-		if (capacity < 850 && capacity > 0) break;
+		if (capacity < 520 && capacity > 0) break;
 		else {
-			std::cout << "Error: invalid capacity, must range between 850 (Airbus A380) and 0.\n";
+			std::cout << "Error: invalid capacity, must range between 520 (Airbus A380) and 0.\n";
 			continue;
 		}
 	}
