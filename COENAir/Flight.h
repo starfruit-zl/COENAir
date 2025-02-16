@@ -19,6 +19,7 @@ private:
 	Date arrivalDate;
 	unsigned int duration;
 	vector<Passenger> passengers;
+	vector<Date> bookingDates;
 
 public:
 	Flight(string dc = {}, string ac = {}, Date depart = (0,0,0,0,0,0), Date arrival = (0, 0, 0, 0, 0, 0), unsigned int d = 0, vector<Passenger> pas = {});
