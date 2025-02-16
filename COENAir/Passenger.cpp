@@ -7,7 +7,7 @@ Passenger::Passenger(std::string FN, std::string LN, std::string AD, std::string
 	ID = std::to_string(globalID++);
 }
 
-Passenger::Passenger(Passenger& p1) {
+/*Passenger::Passenger(Passenger& p1) {
 	ID = p1.ID;
 
 	firstName = p1.firstName;
@@ -17,7 +17,7 @@ Passenger::Passenger(Passenger& p1) {
 	address = p1.address;
 
 	email = p1.email;
-}
+}*/
 
 Passenger::~Passenger() {
 	//use defaults provided by compiler.
