@@ -42,6 +42,8 @@ Flight::Flight(const Flight& F) { //copy each private data from inputed Flight t
 	departureDate = F.departureDate;
 	arrivalDate = F.arrivalDate;
 	duration = F.duration;
+	passengers = F.passengers;
+	bookingDates = F.bookingDates;
 }
 
 string Flight::getID() { //getters return private data.
@@ -106,7 +108,40 @@ const std::vector<Date>* Flight::getBookingDates() {
 	return &bookingDates;
 }
 
-void Flight::printFlight() { //prints flight object.
+std::vector<Passenger>* Flight::getPassenger() {
+	return &passengers;
+}
+
+std::vector<Date>* Flight::getBookingDates() {
+	return &bookingDates;
+}
+
+// DD/MM/YY HH:MM
+void Flight::dateInput(std::vector<string> &stringStore) {
+	std::string input;
+
+	switch (stringStore.size()) { //using the size of the string to select input.
+	case 2:
+		std::getline(std::cin, input, ' '); // after reading YY(space)MM(space), read next DD stopping at ' '.
+		break;
+	case 3:
+		std::getline(std::cin, input, ':'); // after reading YY(space)MM(space)DD(space), read next HH stopping at ':'
+		break;
+	case 4:
+		std::getline(std::cin, input); //after reading YY(space)MM(space)DD(space)MM(space), read next MM stopping at EOF.
+		break;
+	default:
+		std::getline(std::cin, input, '/'); //otherwise, i.e. for YY and MM, stop reading at '/'
+		break;
+	}
+	stringStore.push_back(input); //add a space to retrieved 2 character string, and store to stringStore.
+
+	if (stringStore.size() == 5) return; // once suffieciently sized, return.
+	else dateInput(stringStore); //call function recursively, rechecking switch and break.
+}
+
+
+void Flight::printFlight() {
 	std::cout << "\n" + ID + ": " + departureCity + " on "; 
 	
 	departureDate.printDate();

@@ -16,9 +16,12 @@ private:
 	string ID; //string to store ID, beginning in COA for COENAir
 	string departureCity; 
 	string arrivalCity;
-	Date departureDate; //object of type Date storing parameters related to departure date.
-	Date arrivalDate; //object of type Date storing parameters related to departure date.
-	unsigned int duration; //duration is not signed.
+	Date departureDate;
+	Date arrivalDate;
+	unsigned int duration;
+	vector<Passenger> passengers;
+	vector<Date> bookingDates;
+	void dateInput(std::vector<string> &stringStore);
 
 public: //descriptions in .cpp
 	Flight();
