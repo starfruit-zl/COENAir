@@ -9,6 +9,6 @@ Date::Date(int d, int m, int y, int hour, int min, int sec) {
 }
 
 void Date::printDate() const {
-    cout << month << "/" << day << "/" << year << " ";
+    cout << day << "/" << month << "/" << year << " ";
     time.printTime();
 }
