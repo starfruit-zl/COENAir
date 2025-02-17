@@ -1,3 +1,5 @@
+// Students and their respective ID's: Zachary Lord, 40309150 and Kieran Alszko, 40314739
+
 #pragma once
 #include "Flight.h"
 #include <vector>
@@ -7,15 +9,15 @@
 
 class Airline {
 private:
-	std::string nameCompany;
+	std::string nameCompany; //private string to store company name, formated as such as user or future coder is likely to enter name first.
 
-	std::string address;
+	std::string address; //private string to store address.
 
-	std::vector<Flight> flights;
+	std::vector<Flight> flights; //private vector of Flight objects to store relevant flights of airline.
 
 public:
 
-	Airline(std::string NC = {}, std::string AD = {}, std::vector<Flight> FL = {}); //also array or vector of Flight objects.
+	Airline(std::string NC = {}, std::string AD = {}, std::vector<Flight> FL = {}); //
 
 	Airline(const Airline&);
 
