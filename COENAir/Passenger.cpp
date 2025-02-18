@@ -1,3 +1,4 @@
+// Students and their respective ID's: Kieran Alszko, 40314739 and Zachary Lord, 40309150
 #include "Passenger.h"
 
 unsigned int Passenger::globalID(1); //define start point as 1 of ID management system. Static property allows sharing within the class context privately, ensures used ID is unique outside of copies.
