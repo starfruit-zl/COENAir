@@ -32,6 +32,7 @@ public:
 	void setArrivalCity(string&);
 	void setDepartureDate(Date&);
 	void setArrivalDate(Date&);
+	void printFlight();
 };
 
 #endif // FLIGHT
