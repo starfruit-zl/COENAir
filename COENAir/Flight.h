@@ -19,6 +19,7 @@ private:
 	Date departureDate; //object of type Date storing parameters related to departure date.
 	Date arrivalDate; //object of type Date storing parameters related to departure date.
 	unsigned int duration; //duration is not signed.
+	void setDuration();
 
 public: //descriptions in .cpp
 	Flight();
@@ -35,7 +36,6 @@ public: //descriptions in .cpp
 	void setArrivalCity(string&);
 	void setDepartureDate(Date&);
 	void setArrivalDate(Date&);
-	void setDuration();
 	void printFlight();
 };
 
