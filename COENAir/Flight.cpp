@@ -97,7 +97,7 @@ void Flight::removePassenger(string id) {
 			return;
 		}
 	}
-	cout << "\nNo Passenger found!";
+	cout << "\nNo Passenger found!"; //error messege if no passenger id foind
 	return;
 
 }
@@ -112,7 +112,7 @@ bool Flight::searchPassenger(string id) {
 
 void Flight::displayPassengers() {
 	cout << "\nPassengers on flight " + ID + ":\n";
-	for (int i(0); i < passengers.size(); i++) {
+	for (int i(0); i < passengers.size(); i++) { //prints passenger info of all passengers on flight
 		passengers[i].printPassenger();
 		cout << "\n";
 	}

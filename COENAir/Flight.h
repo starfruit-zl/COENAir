@@ -35,11 +35,11 @@ public:
 	void setDepartureDate(Date&);
 	void setArrivalDate(Date&);
 	void setDuration(unsigned int);
-	void printFlight();
-	void addPassenger(const Passenger&);
-	void removePassenger(string);
-	bool searchPassenger(string);
-	void displayPassengers();
+	void printFlight(); //prints info of the flight
+	void addPassenger(const Passenger&); //adds a passenger to the flight
+	void removePassenger(string); //removes a passenger from the flight
+	bool searchPassenger(string); //check if a passenger is on flight
+	void displayPassengers(); //lists passengers and info
 };
 
 #endif // FLIGHT
