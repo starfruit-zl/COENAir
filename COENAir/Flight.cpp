@@ -89,4 +89,15 @@ void Flight::setDuration() {
 	return;
 }
 
+void Flight::printFlight() { //prints flight object.
+	std::cout << "\n" + ID + ": " + departureCity + " on "; 
+	
+	departureDate.printDate();
+
+	std::cout << arrivalCity + " on ";
+
+	arrivalDate.printDate();
+
+	return;
+}
 
