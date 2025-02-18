@@ -9,7 +9,7 @@ using namespace std;
 #define FLIGHT
 class Flight{
 private:
-	static unsigned int globalID;
+	static unsigned int globalID; //used to manage number for unique IDs
 	string ID;
 	string departureCity;
 	string arrivalCity;

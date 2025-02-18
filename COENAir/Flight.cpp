@@ -10,12 +10,12 @@ unsigned int Flight::globalID(1);
 
 Flight::Flight(string dc, string ac, Date depart, Date arrival, unsigned int d): departureCity(dc), arrivalCity(ac), departureDate(depart), arrivalDate(arrival), duration(d) {
 	unsigned int id = globalID++;
-	ID = "COA" + to_string(id);
+	ID = "COA" + to_string(id); //automatically setting unique ID
 }
 
 Flight::~Flight(){}
 
-Flight::Flight(Flight& F) {
+Flight::Flight(Flight& F) { //coppy constructor
 	ID = F.ID;
 	departureCity = F.departureCity;
 	arrivalCity = F.arrivalCity;
