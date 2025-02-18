@@ -82,13 +82,15 @@ void Flight::setArrivalCity(string& AC) {
 
 void Flight::setDepartureDate(Date& DD) {
 	departureDate = DD;
-
+	setDuration();
+	
 	return;
 }
 
 void Flight::setArrivalDate(Date& AD) {
 	arrivalDate = AD;
-
+	setDuration();
+	
 	return;
 }
 
