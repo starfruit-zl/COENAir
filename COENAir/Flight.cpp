@@ -98,8 +98,12 @@ void Flight::setDuration() {
 	double hoursArrival = (arrivalDate.getYear() * 8760) + hoursMonth[arrivalDate.getMonth()] + (arrivalDate.getDay() * 24) + arrivalDate.getTime().getHour() + (arrivalDate.getTime().getMin() / 60) + (arrivalDate.getTime().getSecond() / 3600);
 	double timeDifference = hoursArrival - hoursDeparture;
 	duration = timeDifference;
+const std::vector<Passenger>* Flight::getPassengers() {
+	return &passengers;
+}
 
-	return;
+const std::vector<Date>* Flight::getBookingDates() {
+	return &bookingDates;
 }
 
 void Flight::printFlight() { //prints flight object.
@@ -111,5 +115,45 @@ void Flight::printFlight() { //prints flight object.
 
 	arrivalDate.printDate();
 
+	return;
+}
+
+void Flight::addPassenger(const Passenger& pas) {
+	passengers.push_back(pas);
+
+	std::vector <string> stringStore;
+	std::cout << "\tInput the booking date of following format (DD/MM/YY HH:MM): ";
+	dateInput(stringStore);
+
+	bookingDates.push_back(Date(stoi(stringStore[0]), stoi(stringStore[1]), stoi(stringStore[2]), stoi(stringStore[3]), stoi(stringStore[4])));
+}
+
+void Flight::removePassenger(string id) {
+	for (int i(0); i < passengers.size(); i++) {
+		if (passengers[i].getID() == id) {
+			passengers.erase(passengers.begin() + i);
+			bookingDates.erase(bookingDates.begin() + i);
+			return;
+		}
+	}
+	cout << "\nNo Passenger found!"; //error messege if no passenger id foind
+	return;
+
+}
+
+bool Flight::searchPassenger(string id) {
+	for (int i(0); i < passengers.size(); i++) {
+		if (passengers[i].getID() == id)
+			return true;
+	}
+	return false;
+}
+
+void Flight::displayPassengers() {
+	cout << "\nPassengers on flight " + ID + ":\n";
+	for (int i(0); i < passengers.size(); i++) { //prints passenger info of all passengers on flight
+		passengers[i].printPassenger();
+		cout << "\n";
+	}
 	return;
 }
