@@ -76,11 +76,11 @@ void Flight::setDuration(unsigned int D) {
 	return;
 }
 
-std::vector<Passenger>* Flight::getPassenger() {
+const std::vector<Passenger>* Flight::getPassengers() {
 	return &passengers;
 }
 
-std::vector<Date>* Flight::getBookingDates() {
+const std::vector<Date>* Flight::getBookingDates() {
 	return &bookingDates;
 }
 
@@ -125,7 +125,7 @@ void Flight::addPassenger(const Passenger& pas) {
 	passengers.push_back(pas);
 
 	std::vector <string> stringStore;
-	std::cout << "\tDeparture time of the following format (DD/MM/YY HH:MM): ";
+	std::cout << "\tInput the booking date of following format (DD/MM/YY HH:MM): ";
 	dateInput(stringStore);
 
 	bookingDates.push_back(Date(stoi(stringStore[0]), stoi(stringStore[1]), stoi(stringStore[2]), stoi(stringStore[3]), stoi(stringStore[4])));
