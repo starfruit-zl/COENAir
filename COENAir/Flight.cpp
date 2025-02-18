@@ -21,7 +21,7 @@ Flight::Flight() {
 	arrivalCity = {}; //null declaration
 	departureDate = d1; //default Object copied to departure and arrival dates.
 	arrivalDate = d1;
-	duration = 0; // to be calculated as difference of dates? please. ******
+	duration = 0; // to be calculated as difference of dates.
 }
 
 Flight::Flight(string dc, string ac, Date &depart, Date &arrival): departureCity(dc), arrivalCity(ac), departureDate(depart), arrivalDate(arrival) {
