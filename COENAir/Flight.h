@@ -16,6 +16,7 @@ private:
 	Date departureDate;
 	Date arrivalDate;
 	unsigned int duration;
+	void setDuration(unsigned int); //automaticly sets duration beased on dates
 
 public:
 	Flight(string dc = {}, string ac = {}, Date depart = (0,0,0,0,0,0), Date arrival = (0, 0, 0, 0, 0, 0), unsigned int d = 0);
@@ -31,7 +32,6 @@ public:
 	void setArrivalCity(string&);
 	void setDepartureDate(Date&);
 	void setArrivalDate(Date&);
-	void setDuration(unsigned int);
 };
 
 #endif // FLIGHT
