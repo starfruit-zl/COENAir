@@ -8,12 +8,13 @@ using namespace std;
 
 class Time { //class taken from moodle, as per instructed in assignment. Credits to professor Wahab Hamou-Lhadj.
 public:
-	Time();
-	void setTime(int h, int, int);
+	void setTime(int h = 0, int = 0, int = 0);
 	void printTime() const;
+	double getHour(), getMin(), getSecond();
 
 private:
 	int hour, minute, second;
 };
+
 
 #endif
