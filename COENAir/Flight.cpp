@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <array>
 
 #include "Date.h"
 #include "Flight.h"
@@ -8,10 +9,22 @@ using namespace std;
 
 unsigned int Flight::globalID(1);
 
-Flight::Flight(string dc, string ac, Date depart, Date arrival, unsigned int d): departureCity(dc), arrivalCity(ac), departureDate(depart), arrivalDate(arrival), duration(d) {
+Flight::Flight(string dc, string ac, Date depart, Date arrival): departureCity(dc), arrivalCity(ac), departureDate(depart), arrivalDate(arrival) {
 	unsigned int id = globalID++;
 	ID = "COA" + to_string(id); //automatically setting unique ID
+	setDuration();
 }
+
+Flight::Flight() {
+	unsigned int id = globalID++;
+	ID = "COA" + to_string(id);
+	departureCity = {};
+	arrivalCity = {};
+	arrivalDate = Date(0, 0, 0, 0, 0, 0);
+	departureDate = Date(0, 0, 0, 0, 0, 0);
+	duration = 0;
+}
+
 
 Flight::~Flight(){}
 
@@ -58,14 +71,22 @@ void Flight::setArrivalCity(string& AC) {
 
 void Flight::setDepartureDate(Date& DD) {
 	departureDate = DD;
+	setDuration();
 }
 
 void Flight::setArrivalDate(Date& AD) {
 	arrivalDate = AD;
+	setDuration();
 }
 
-void Flight::setDuration(unsigned int D) {
-	duration = D;
+void Flight::setDuration() {
+	std::array<int, 12> hoursMonth{ 0, 744, 1416, 2160, 2880, 3624, 4344, 5088, 5832, 6552, 7296, 8016 }; //in order, January to December.
+	double hoursDeparture = (departureDate.getYear() * 8760) + hoursMonth[departureDate.getMonth() - 1] + (departureDate.getDay() * 24) + departureDate.getTime().getHour() + (departureDate.getTime().getMin() / 60) + (departureDate.getTime().getSecond() / 3600);
+	double hoursArrival = (arrivalDate.getYear() * 8760) + hoursMonth[arrivalDate.getMonth() - 1] + (arrivalDate.getDay() * 24) + arrivalDate.getTime().getHour() + (arrivalDate.getTime().getMin() / 60) + (arrivalDate.getTime().getSecond() / 3600);
+	double timeDifference = hoursArrival - hoursDeparture;
+	duration = timeDifference;
+
+	return;
 }
 
 

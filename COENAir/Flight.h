@@ -16,9 +16,11 @@ private:
 	Date departureDate;
 	Date arrivalDate;
 	unsigned int duration;
+	void setDuration();
 
 public:
-	Flight(string dc = {}, string ac = {}, Date depart = (0,0,0,0,0,0), Date arrival = (0, 0, 0, 0, 0, 0), unsigned int d = 0);
+	Flight(string dc, string ac, Date depart, Date arrival);
+	Flight();
 	Flight(Flight&);
 	~Flight();
 	string getID();
@@ -31,7 +33,6 @@ public:
 	void setArrivalCity(string&);
 	void setDepartureDate(Date&);
 	void setArrivalDate(Date&);
-	void setDuration(unsigned int);
 };
 
 #endif // FLIGHT

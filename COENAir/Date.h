@@ -10,6 +10,10 @@ public:
 	//added in-line default constructor.
 	void printDate() const;   	    // print date to the screen
 
+	int getDay(), getMonth(), getYear();
+
+	Time getTime();
+
 private:
 	int day, month, year;
 	Time time;   // a component object
