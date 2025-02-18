@@ -30,6 +30,7 @@ Flight::Flight() {
 	arrivalCity = {};
 	arrivalDate = Date(0, 0, 0, 0, 0, 0);
 	departureDate = Date(0, 0, 0, 0, 0, 0);
+	duration = 0;
 	passengers = {};
 }
 
