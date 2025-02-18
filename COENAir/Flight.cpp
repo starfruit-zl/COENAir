@@ -28,7 +28,6 @@ Flight::Flight(string dc, string ac, Date &depart, Date &arrival): departureCity
 	unsigned int id = globalID++;
 	ID = "COA" + to_string(id);
 	setDuration();
-	int i = 0;
 }
 
 Flight::~Flight(){
