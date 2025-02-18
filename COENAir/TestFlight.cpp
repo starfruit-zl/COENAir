@@ -6,7 +6,7 @@
 
 using namespace std;
 
-void testFlight(Flight& F, string id, string dc, string ac, unsigned int d, vector<Passenger> pas) { //function to test flight object
+void testFlight(Flight& F, string id, string dc, string ac, vector<Passenger> pas) { //function to test flight object
 	Passenger pas3("Gerald", "Hemsworth", "419 Street street", "ghemsworth@gmail.com");
 	int pass(pas.size()); //used to print the ammount of passengers in the test object
 	if (F.getID() != id) { //test constroctor data
@@ -18,7 +18,7 @@ void testFlight(Flight& F, string id, string dc, string ac, unsigned int d, vect
 	if (F.getArrivalCity() != ac) {
 		cout << "\nArrival City set error";
 	}
-	if (F.getDuration() != d) {
+	if (F.getDuration() != 0) {
 		cout << "\nDuration set error";
 	}
 	//test constructor data (dates)
@@ -38,13 +38,12 @@ int main() {
 	Passenger pas1("Bob", "Marley", "68th street", "bob@gmail.com"), pas2("Arneld", "Shworts", "70th street", "arneld.s@gmail.com");
 	vector<Passenger> pas{pas1, pas2};
 	string dc("here"), ac("there");
-	Date D1(1, 2, 3, 1, 2, 3);
-	unsigned int d(3);
-	Flight F1(dc, ac, D1, D1, d, pas), F2; //inisialising both test objects (using both constructors)
+	Date D1(1, 3, 23, 1, 2, 3);
+	Flight F1(dc, ac, D1, D1, pas), F2; //inisialising both test objects (using both constructors)
 	//testing each object using test function
 	cout << "Testing Flight using test data (dates should be 1/2/3 1:2:3 : ";
-	testFlight(F1, "COA1", dc, ac, d, pas);
+	testFlight(F1, "COA1", dc, ac, pas);
 	cout << "\nTesting Flight using test data (dates should be 0/0/0 0:0:0 : ";
-	testFlight(F2, "COA2", {}, {}, {}, vector<Passenger> {});
+	testFlight(F2, "COA2", {}, {}, vector<Passenger> {});
 	return 0;
 }

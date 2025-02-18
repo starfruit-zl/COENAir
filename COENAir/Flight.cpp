@@ -10,10 +10,26 @@ using namespace std;
 
 unsigned int Flight::globalID(1);
 
-Flight::Flight(string dc, string ac, Date depart, Date arrival, unsigned int d, vector<Passenger> pas, vector<Date> bkd): departureCity(dc), arrivalCity(ac), departureDate(depart), arrivalDate(arrival), duration(d),passengers(pas), bookingDates(bkd){
+/*Flight::Flight(string dc, string ac, Date depart, Date arrival, vector<Passenger> pas, vector<Date> bkd) : departureCity(dc), arrivalCity(ac), departureDate(depart), arrivalDate(arrival), duration(d), passengers(pas), bookingDates(bkd) {
 	unsigned int id = globalID++;
 	ID = "COA" + to_string(id);
 	setDuration();
+}*/
+
+Flight::Flight(string dc, string ac, Date depart, Date arrival, vector<Passenger> pas) : departureCity(dc), arrivalCity(ac), departureDate(depart), arrivalDate(arrival), passengers(pas) {
+	unsigned int id = globalID++;
+	ID = "COA" + to_string(id);
+	setDuration();
+}
+
+Flight::Flight() {
+	unsigned int id = globalID++;
+	ID = "COA" + to_string(id);
+	departureCity = {};
+	arrivalCity = {};
+	arrivalDate = Date(0, 0, 0, 0, 0, 0);
+	departureDate = Date(0, 0, 0, 0, 0, 0);
+	passengers = {};
 }
 
 Flight::~Flight(){}
@@ -26,7 +42,7 @@ Flight::Flight(Flight& F) {
 	arrivalDate = F.arrivalDate;
 	duration = F.duration;
 	passengers = F.passengers;
-	bookingDates = F.bookingDates;
+	//bookingDates = F.bookingDates;
 }
 
 string Flight::getID() {
@@ -89,12 +105,12 @@ const std::vector<Passenger>* Flight::getPassengers() {
 	return &passengers;
 }
 
-const std::vector<Date>* Flight::getBookingDates() {
+/*const std::vector<Date>* Flight::getBookingDates() {
 	return &bookingDates;
-}
+}*/
 
 // DD/MM/YY HH:MM
-void Flight::dateInput(std::vector<string> &stringStore) {
+/*void Flight::dateInput(std::vector<string>& stringStore) {
 	std::string input;
 
 	switch (stringStore.size()) { //using the size of the string to select input.
@@ -115,7 +131,7 @@ void Flight::dateInput(std::vector<string> &stringStore) {
 
 	if (stringStore.size() == 5) return; // once suffieciently sized, return.
 	else dateInput(stringStore); //call function recursively, rechecking switch and break.
-}
+}*/
 
 
 void Flight::printFlight() {
@@ -133,18 +149,19 @@ void Flight::printFlight() {
 void Flight::addPassenger(const Passenger& pas) {
 	passengers.push_back(pas);
 
-	std::vector <string> stringStore;
+	/*std::vector <string> stringStore;
 	std::cout << "\tInput the booking date of following format (DD/MM/YY HH:MM): ";
 	dateInput(stringStore);
 
 	bookingDates.push_back(Date(stoi(stringStore[0]), stoi(stringStore[1]), stoi(stringStore[2]), stoi(stringStore[3]), stoi(stringStore[4])));
+	*/
 }
 
 void Flight::removePassenger(string id) {
 	for (int i(0); i < passengers.size(); i++) {
 		if (passengers[i].getID() == id) {
 			passengers.erase(passengers.begin() + i);
-			bookingDates.erase(bookingDates.begin() + i);
+			//bookingDates.erase(bookingDates.begin() + i);
 			return;
 		}
 	}
