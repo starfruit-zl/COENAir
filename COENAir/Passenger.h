@@ -1,11 +1,5 @@
+// Students and their respective ID's: Kieran Alszko, 40314739 and Zachary Lord, 40309150
 #pragma once
-/*Q2. (15 points) Write a class called Passenger that represents the passengers of
-CoenAir. A passenger has an id (string), first name (string), last name (string), address
-(string), and email (string). The class should have one or more constructors, accessing
-functions, a copy constructor, a destructor, a function that prints information about a
-passenger. Write a driver to test the Passenger class.
-Deliverables: A zip file that contains three files: Passenger.h, Passenger.cpp,
-TestPassenger.cpp*/
 
 #include <iostream>
 #include <string>
