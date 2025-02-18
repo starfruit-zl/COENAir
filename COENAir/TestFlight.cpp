@@ -6,10 +6,10 @@
 
 using namespace std;
 
-void testFlight(Flight& F, string id, string dc, string ac, unsigned int d, vector<Passenger> pas) {
+void testFlight(Flight& F, string id, string dc, string ac, unsigned int d, vector<Passenger> pas) { //function to test flight object
 	Passenger pas3("Gerald", "Hemsworth", "419 Street street", "ghemsworth@gmail.com");
-	int pass(pas.size());
-	if (F.getID() != id) {
+	int pass(pas.size()); //used to print the ammount of passengers in the test object
+	if (F.getID() != id) { //test constroctor data
 		cout << "\nID set error";
 	}
 	if (F.getDepartureCity() != dc) {
@@ -21,11 +21,12 @@ void testFlight(Flight& F, string id, string dc, string ac, unsigned int d, vect
 	if (F.getDuration() != d) {
 		cout << "\nDuration set error";
 	}
+	//test constructor data (dates)
 	cout << "\nDate 1:";
 	F.getDepartureDate().printDate();
 	cout << "\nDate 2:";
 	F.getArrivalDate().printDate();
-	
+	//test passenger and adding passenger
 	cout << "\nTestting passengers (Fist list should have " << pass << " passengers and second should have " << (pass + 1) << "):";
 	F.displayPassengers();
 	F.addPassenger(pas3);
@@ -33,12 +34,14 @@ void testFlight(Flight& F, string id, string dc, string ac, unsigned int d, vect
 }
 
 int main() {
+	//sample testing data
 	Passenger pas1("Bob", "Marley", "68th street", "bob@gmail.com"), pas2("Arneld", "Shworts", "70th street", "arneld.s@gmail.com");
 	vector<Passenger> pas{pas1, pas2};
 	string dc("here"), ac("there");
 	Date D1(1, 2, 3, 1, 2, 3);
 	unsigned int d(3);
-	Flight F1(dc, ac, D1, D1, d, pas), F2;
+	Flight F1(dc, ac, D1, D1, d, pas), F2; //inisialising both test objects (using both constructors)
+	//testing each object using test function
 	cout << "Testing Flight using test data (dates should be 1/2/3 1:2:3 : ";
 	testFlight(F1, "COA1", dc, ac, d, pas);
 	cout << "\nTesting Flight using test data (dates should be 0/0/0 0:0:0 : ";
