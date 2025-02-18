@@ -19,9 +19,11 @@ private:
 	Date arrivalDate;
 	unsigned int duration;
 	vector<Passenger> passengers;
+	vector<Date> bookingDates;
+	void dateInput(std::vector<string> &stringStore);
 
 public:
-	Flight(string dc = {}, string ac = {}, Date depart = (0,0,0,0,0,0), Date arrival = (0, 0, 0, 0, 0, 0), unsigned int d = 0, vector<Passenger> pas = {});
+	Flight(string dc = {}, string ac = {}, Date depart = (0, 0, 0, 0, 0, 0), Date arrival = (0, 0, 0, 0, 0, 0), unsigned int d = 0, vector<Passenger> pas = {}, vector<Date> bkd = {});
 	Flight(Flight&);
 	~Flight();
 	string getID();
@@ -29,6 +31,8 @@ public:
 	string getArrivalCity();
 	Date getDepartureDate();
 	Date getArrivalDate();
+	std::vector<Passenger>* getPassenger();
+	std::vector<Date>* getBookingDates();
 	unsigned int getDuration();
 	void setDepartureCity(string&);
 	void setArrivalCity(string&);
