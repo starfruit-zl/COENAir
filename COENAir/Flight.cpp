@@ -85,20 +85,22 @@ void Flight::setArrivalCity(string& AC) {
 
 void Flight::setDepartureDate(Date& DD) {
 	departureDate = DD;
-
+	setDuration();
+	
 	return;
 }
 
 void Flight::setArrivalDate(Date& AD) {
 	arrivalDate = AD;
-
+	setDuration();
+	
 	return;
 }
 
 void Flight::setDuration() {
 	std::array<int, 12> hoursMonth{ 0, 744, 1416, 2160, 2880, 3624, 4344, 5088, 5832, 6552, 7296, 8016 }; //in order, January to December.
-	double hoursDeparture = (departureDate.getYear() * 8760) + hoursMonth[departureDate.getMonth()] + (departureDate.getDay() * 24) + departureDate.getTime().getHour() + (departureDate.getTime().getMin() / 60) + (departureDate.getTime().getSecond() / 3600);
-	double hoursArrival = (arrivalDate.getYear() * 8760) + hoursMonth[arrivalDate.getMonth()] + (arrivalDate.getDay() * 24) + arrivalDate.getTime().getHour() + (arrivalDate.getTime().getMin() / 60) + (arrivalDate.getTime().getSecond() / 3600);
+	double hoursDeparture = (departureDate.getYear() * 8760) + hoursMonth[departureDate.getMonth()-1] + (departureDate.getDay() * 24) + departureDate.getTime().getHour() + (departureDate.getTime().getMin() / 60) + (departureDate.getTime().getSecond() / 3600);
+	double hoursArrival = (arrivalDate.getYear() * 8760) + hoursMonth[arrivalDate.getMonth()-1] + (arrivalDate.getDay() * 24) + arrivalDate.getTime().getHour() + (arrivalDate.getTime().getMin() / 60) + (arrivalDate.getTime().getSecond() / 3600);
 	double timeDifference = hoursArrival - hoursDeparture;
 	duration = timeDifference;
 }
