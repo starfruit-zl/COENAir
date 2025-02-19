@@ -36,8 +36,8 @@ public: //descriptions in .cpp
 	string getArrivalCity();
 	Date getDepartureDate();
 	Date getArrivalDate();
-	std::vector<Passenger> &getPassengers();
-	std::vector<Date> &getBookingDates();
+	std::vector<Passenger> getPassengers();
+	std::vector<Date> getBookingDates();
 	unsigned int getDuration();
 	void setDepartureCity(string&);
 	void setArrivalCity(string&);

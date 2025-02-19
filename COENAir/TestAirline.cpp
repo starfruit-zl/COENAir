@@ -33,7 +33,8 @@ int main() {
 	Passenger p1("Chelsea", "Canaan", "92 Serenity Lane, Manchester, United Kingdom", "chelseacanaan.cc@gmail.com"), p2("Martin", "Truex", "63 Home Track Road, New Jersey, United States", "mtj.56@gmail.com"),
 		p3("Gerald", "Hemsworth", "419 Street street", "ghemsworth@gmail.com"), p4("Bob", "Marley", "68th street", "bob@gmail.com"), p5("Arneld", "Shworts", "70th street", "arneld.s@gmail.com");
 
-	std::vector<Passenger> passenger{ p1, p2, p3, p4 ,p5 };//"global/registered" system passengers, public data in the airline implementation.
+	std::vector<Passenger> passenger{ p1, p2, p3, p4 ,p5 };//"global/registered" system passengers, corresponds to the unique instances of Passenger in the
+	//private passengers vector for all Flight objects in the private flights vector.
 
 	Flight defaultFlight("Montreal", "Amsterdam", d1, d2, passenger, bookingDate);
 	flights.push_back(defaultFlight); //flight pre-defined using direct input constructor.
@@ -78,30 +79,30 @@ int main() {
 			std::cout << "\nEnter the flightID you wish to interact with: ";
 			std::cin >> input;
 
-			for (int i = 0; i < COENAir.getFlights().size(); i++) {
-				if (input == COENAir.getFlights().at(i).getID()) {
-					flightPos = i;
-					break;
+			for (int i = 0; i < COENAir.getFlights().size(); i++) { //for the flights vector in airline.
+				if (input == COENAir.getFlights().at(i).getID()) { //if ID is found.
+					flightPos = i; //select this specific flights index.
+					break; //escape
 				}
-				if (i == COENAir.getFlights().size() - 1) {
+				if (i == COENAir.getFlights().size() - 1) {//else, when about to move out of range.
 					std::cout << "The inputed passenger could not be found inside the system. Please try again: ";
-					i = 0;
-					std::cin >> input;
-					continue;
+					i = 0; //reset count
+					std::cin >> input;//re-request input
+					continue; //repeat for loop.
 				}
 			}
 
 			std::cout << "Please review the following Passenger interactions:\n\n\t1.Add Passenger to Flight\n\t2.Remove Passenger from Flight\n\t3.Check if Passenger has Booked Flight\n\t4.Display Booking Information\nEnter your selection: ";
 			std::cin >> selection;
-			switch (selection) {
+			switch (selection) { //switch case for selection.
 			case 1:
-				std::cout << "\nIs the passenger already registered in the system?(y/n): ";
+				std::cout << "\nIs the passenger already registered in the system?(y/n): "; 
 				std::cin >> answer;
-				switch (answer) {
+				switch (answer) { //switch case of char for different adding modes (none vs pre-existing.)
 				case 'n': {
 					Passenger pas1 = initializePassenger();
-					COENAir.getFlights().at(flightPos).addPassenger(pas1);
-					passenger.push_back(pas1); //DATE IS GLITCH for no reason. no clue why.
+					COENAir.addPassengerToFlight(flightPos,pas1); //utilising class hierarchy to access private data with member functions.
+					passenger.push_back(pas1);
 					break;
 				}
 				case 'y':
@@ -110,10 +111,11 @@ int main() {
 						std::cin >> input;
 						if (input == passenger.at(i).getID()) {
 							passPos = i;
-							COENAir.getFlights().at(flightPos).addPassenger(passenger.at(passPos));
+							COENAir.addPassengerToFlight(flightPos, passenger.at(passPos)); //call member function that adds Passenger to flight for Passenger in
+							// "public" passenger vector.
 							break;
 						}
-						if (i == passenger.size() - 1) {
+						if (i == passenger.size() - 1) { //else, when about to move out of range.
 							std::cout << "The inputed passenger could not be found inside the system. Please try again: ";
 							i = 0;
 							std::cin >> input;
@@ -128,23 +130,22 @@ int main() {
 				std::cin >> input;
 
 				for (int i = 0; i < COENAir.getFlights().at(flightPos).getPassengers().size(); i++) { //for the vector passengers
-					if (input == COENAir.getFlights().at(flightPos).getPassengers().at(i).getID()) {
-						passPos = i; //when ID matches input
-						COENAir.getFlights().at(flightPos).removePassenger(COENAir.getFlights().at(flightPos).getPassengers().at(passPos).getID()); //remove Passenger with this ID.
+					if (input == COENAir.getFlights().at(flightPos).getPassengers().at(i).getID()) { //if ID at index i of passenger matches input
+						COENAir.removePassengerFromFlight(flightPos, input); //remove Passenger with this ID, new member function similar to addPassengerToFlight
 						break;
 					}
-					else if (i == COENAir.getFlights().at(flightPos).getPassengers().size() - 1)
-						std::cout << "Could not find the requested Passenger.";
+					if (i == COENAir.getFlights().at(flightPos).getPassengers().size() - 1) //else, when about to move out of scope
+						std::cout << "Could not find the requested Passenger."; //error message.
 				}
 				break;
-			case 3:
+			case 3: //these can function with scoped copies, so no need for new member functions.
 				std::cout << "\nEnter the passengerID you wish to check for: ";
 				std::cin >> input;
 
 				if (COENAir.getFlights().at(flightPos).searchPassenger(input)) std::cout << "Reservation confirmed, the skies await you.";
 				else std::cout << "Passenger not registered for this flight.";
 				break;
-			case 4:
+			case 4: //these can function with scoped copies, so no need for new member functions.
 				COENAir.getFlights().at(flightPos).displayPassengers();
 				break;
 			}

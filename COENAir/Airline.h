@@ -17,7 +17,7 @@ private:
 
 public:
 
-	Airline(std::string NC = {}, std::string AD = {}, std::vector<Flight> FL = {}); //
+	Airline(std::string NC = {}, std::string AD = {}, std::vector<Flight> FL = {}); 
 
 	Airline(const Airline&);
 
@@ -33,7 +33,7 @@ public:
 
 	void setFlights(std::vector<Flight>);
 
-	std::vector<Flight> &getFlights();
+	std::vector<Flight> getFlights();
 
 	void addFlight(const Flight&);
 
@@ -44,6 +44,10 @@ public:
 	void displayFlights();
 
 	void displayFlightsFromTo(std::string departure, std::string destination);
+
+	void addPassengerToFlight(int, Passenger&);
+
+	void removePassengerFromFlight(int, std::string);
 
 };
 

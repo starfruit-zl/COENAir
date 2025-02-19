@@ -44,9 +44,19 @@ void Airline::setFlights(std::vector<Flight> FL) {
 	return;
 }
 
-std::vector<Flight> &Airline::getFlights() {
+std::vector<Flight> Airline::getFlights() {
 	return flights;
 }
+
+void Airline::addPassengerToFlight(int flightIndex, Passenger& pasAdded) { //access private data through member function.
+flights[flightIndex].addPassenger(pasAdded); //uses addPassenger() function from flight.cpp for flights at flightIndex.
+return;
+}
+
+void Airline::removePassengerFromFlight(int flightIndex, std::string passengerID) { //acess private data through member function.
+	flights[flightIndex].removePassenger(passengerID); //uses removePassenger() function from flight.cpp for flights at flightIndex.
+}
+
 
 void Airline::addFlight(const Flight& f1) { //add Flight object to vector flights.
 

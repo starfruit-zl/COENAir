@@ -105,11 +105,11 @@ void Flight::setDuration() {
 	duration = timeDifference;
 }
 
-std::vector<Passenger> &Flight::getPassengers() {
+std::vector<Passenger> Flight::getPassengers() {
 	return passengers;
 }
 
-std::vector<Date> &Flight::getBookingDates() {
+std::vector<Date> Flight::getBookingDates() {
 	return bookingDates;
 }
 
@@ -171,7 +171,7 @@ void Flight::removePassenger(string id) {
 			return;
 		}
 	}
-	cout << "\nNo Passenger found!"; //error messege if no passenger id foind
+	cout << "\nNo Passenger found!"; //error messege if no passenger id found
 	return;
 
 }
