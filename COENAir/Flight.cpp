@@ -21,18 +21,19 @@ Flight::Flight() {
 	arrivalCity = {}; //null declaration
 	departureDate = d1; //default Object copied to departure and arrival dates.
 	arrivalDate = d1;
-	duration = 0; // to be calculated as difference of dates? please. ******
+	duration = 0; // to be calculated as difference of dates
+	passengers = {};
+	bookingDates = {};
 }
 
-Flight::Flight(string dc, string ac, Date &depart, Date &arrival): departureCity(dc), arrivalCity(ac), departureDate(depart), arrivalDate(arrival) {
+Flight::Flight(string dc, string ac, Date depart, Date arrival, vector<Passenger> pas, vector<Date> bkd): departureCity(dc), arrivalCity(ac), departureDate(depart), arrivalDate(arrival), passengers(pas), bookingDates(bkd) {
 	unsigned int id = globalID++;
 	ID = "COA" + to_string(id);
 	setDuration();
-	int i = 0;
 }
 
 Flight::~Flight(){
-	std::cout << "\tRemoving flight " + ID + " from system."; //message to confirm destructor in use.
+
 }
 
 Flight::Flight(const Flight& F) { //copy each private data from inputed Flight to new Flight object.
@@ -100,20 +101,14 @@ void Flight::setDuration() {
 	double hoursArrival = (arrivalDate.getYear() * 8760) + hoursMonth[arrivalDate.getMonth()] + (arrivalDate.getDay() * 24) + arrivalDate.getTime().getHour() + (arrivalDate.getTime().getMin() / 60) + (arrivalDate.getTime().getSecond() / 3600);
 	double timeDifference = hoursArrival - hoursDeparture;
 	duration = timeDifference;
-const std::vector<Passenger>* Flight::getPassengers() {
-	return &passengers;
 }
 
-const std::vector<Date>* Flight::getBookingDates() {
-	return &bookingDates;
+std::vector<Passenger> &Flight::getPassengers() {
+	return passengers;
 }
 
-std::vector<Passenger>* Flight::getPassenger() {
-	return &passengers;
-}
-
-std::vector<Date>* Flight::getBookingDates() {
-	return &bookingDates;
+std::vector<Date> &Flight::getBookingDates() {
+	return bookingDates;
 }
 
 // DD/MM/YY HH:MM
@@ -153,14 +148,17 @@ void Flight::printFlight() {
 	return;
 }
 
-void Flight::addPassenger(const Passenger& pas) {
+void Flight::addPassenger(Passenger &pas) {
 	passengers.push_back(pas);
 
 	std::vector <string> stringStore;
 	std::cout << "\tInput the booking date of following format (DD/MM/YY HH:MM): ";
 	dateInput(stringStore);
 
-	bookingDates.push_back(Date(stoi(stringStore[0]), stoi(stringStore[1]), stoi(stringStore[2]), stoi(stringStore[3]), stoi(stringStore[4])));
+	Date d1(stoi(stringStore[0]), stoi(stringStore[1]), stoi(stringStore[2]), stoi(stringStore[3]), stoi(stringStore[4]), 0);
+	bookingDates.push_back(d1);
+
+	return;
 }
 
 void Flight::removePassenger(string id) {
@@ -187,7 +185,9 @@ bool Flight::searchPassenger(string id) {
 void Flight::displayPassengers() {
 	cout << "\nPassengers on flight " + ID + ":\n";
 	for (int i(0); i < passengers.size(); i++) { //prints passenger info of all passengers on flight
-		passengers[i].printPassenger();
+		passengers.at(i).printPassenger();
+		cout << "\nBooked on ";
+		bookingDates.at(i).printDate();
 		cout << "\n";
 	}
 	return;

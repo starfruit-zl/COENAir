@@ -3,8 +3,10 @@
 #pragma once
 #include "Date.h"
 #include "Time.h"
+#include "Passenger.h"
 #include <iostream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -22,10 +24,11 @@ private:
 	vector<Passenger> passengers;
 	vector<Date> bookingDates;
 	void dateInput(std::vector<string> &stringStore);
+	void setDuration();
 
 public: //descriptions in .cpp
 	Flight();
-	Flight(string dc, string ac, Date& depart, Date& arrival); //default constructor hated having objects set to default nulls, so unique null constructor nescessary.
+	Flight(string dc, string ac, Date depart, Date arrival, vector<Passenger> pas, vector<Date> bkd); //default constructor hated having objects set to default nulls, so unique null constructor nescessary.
 	~Flight();
 	Flight(const Flight&); //added const modifier to make code work, basically it requires the const to adapt to out of scoped returns. Stops re-allocation of memory.
 	string getID();
@@ -33,15 +36,18 @@ public: //descriptions in .cpp
 	string getArrivalCity();
 	Date getDepartureDate();
 	Date getArrivalDate();
-	const std::vector<Passenger>* getPassengers();
-	const std::vector<Date>* getBookingDates();
+	std::vector<Passenger> &getPassengers();
+	std::vector<Date> &getBookingDates();
 	unsigned int getDuration();
 	void setDepartureCity(string&);
 	void setArrivalCity(string&);
 	void setDepartureDate(Date&);
 	void setArrivalDate(Date&);
-	void setDuration();
 	void printFlight();
+	void addPassenger(Passenger&); //adds a passenger to the flight
+	void removePassenger(string); //removes a passenger from the flight
+	bool searchPassenger(string); //check if a passenger is on flight
+	void displayPassengers(); //lists passengers and info
 };
 
 #endif // FLIGHT

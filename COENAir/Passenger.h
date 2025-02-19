@@ -30,7 +30,7 @@ private:
 public:
 	Passenger(std::string FN = {}, std::string LN = {}, std::string AD = {}, std::string EM = {}); //constructor for Passenger with in-line defaults.
 
-	Passenger(Passenger& p1); //copy constructor for passenger.
+	Passenger(const Passenger& p1); //copy constructor for passenger.
 
 	~Passenger();
 

@@ -7,22 +7,38 @@
 
 using namespace std;
 
+
+
 void dateInput(std::string&, std::string&); //function to read the specified date input used by the initializeFlight() function.
 
 Flight initializeFlight(); //initializes a new instance of flight based off user input and adds it to the flights vector of the Airline class.
+Passenger  initializePassenger(); //initializes a new instance of Passenger based off user input and adds it to the global passengers vector, as well as the passengers
+//vector of the specified flight.
 
 int main() {
 	
 	bool running = true; //bool that controls the while loop containing switch-break function, allows for indefinite repetition until otherwise requested.
 
-	short int selection; //selection input.
+	short int selection, flightPos, passPos; //selection input.
+	
+	char answer;
 
-	std::string input, input2;
+	std::string input, input2, flightID;
 
 	std::vector<Flight> flights; //default flight vector.
-	//Flight(string dc, string ac, unsigned int d, Date& depart, Date& arrival)
-	Date d1(28, 10, 25, 12, 15, 0), d2(29, 10, 25, 8, 6, 0);
-	flights.push_back(Flight("Montreal", "Amsterdam", d1, d2)); //flight pre-defined using direct input constructor.
+
+	Date d1(28, 10, 25, 12, 15, 0), d2(29, 10, 25, 8, 6, 0), dp1(28, 10, 25, 12, 0, 0), dp2(10, 10, 25, 23, 35, 0), dp3(19, 5, 24, 6, 18, 0), dp4(11, 7, 24, 8, 6, 0), dp5(18, 2, 25, 7, 10, 0);
+	std::vector<Date> bookingDate{ dp1, dp2, dp3, dp4, dp5 };
+
+	Passenger p1("Chelsea", "Canaan", "92 Serenity Lane, Manchester, United Kingdom", "chelseacanaan.cc@gmail.com"), p2("Martin", "Truex", "63 Home Track Road, New Jersey, United States", "mtj.56@gmail.com"),
+		p3("Gerald", "Hemsworth", "419 Street street", "ghemsworth@gmail.com"), p4("Bob", "Marley", "68th street", "bob@gmail.com"), p5("Arneld", "Shworts", "70th street", "arneld.s@gmail.com");
+
+	std::vector<Passenger> passenger{ p1, p2, p3, p4 ,p5 };//"global/registered" system passengers, public data in the airline implementation.
+
+	Flight defaultFlight("Montreal", "Amsterdam", d1, d2, passenger, bookingDate);
+	flights.push_back(defaultFlight); //flight pre-defined using direct input constructor.
+
+	Flight selectFlight;
 
 	Airline COENAir("COENAir", "1616 Saint-Catherine Street West, Montreal", flights); //defining COENAir airline including address and flights vector.
 
@@ -31,7 +47,7 @@ int main() {
 
 	while (running) {
 
-		std::cout << "\n\n\t1.Register New Flight\n\t2.Remove Flight from List\n\t3.Check flight status.\n\t4.Display Upcoming Flights.\n\t5.Search Flights by Trajectory\n\t6.Exit Search.\nEnter your selection: ";
+		std::cout << "\n\n\t1.Register New Flight\n\t2.Remove Flight from List\n\t3.Check flight status\n\t4.Display Upcoming Flights\n\t5.Search Flights by Trajectory\n\t6.Access Passenger Interface\n\t7.Exit Search\nEnter your selection: ";
 		std::cin >> selection;
 		switch (selection) {
 		case 1:
@@ -46,7 +62,7 @@ int main() {
 			std::cout << "\n\tPlease input the ID of the flight you'd like to check: ";
 			std::cin >> input;
 			if (COENAir.searchFlight(input)) std::cout << "\nYour flight is awaiting departure"; //meaning that flight will appear on display flights.
-			else std::cout << "\nYour flight is not currently registered in our database. Please check by later."; //meaning that flight was not found.
+			else std::cout << "\nYour flight is not currently registered in our database. Please check by later."; //meaning that flight was not found
 			break;
 		case 4:
 			COENAir.displayFlights();
@@ -59,6 +75,81 @@ int main() {
 			COENAir.displayFlightsFromTo(input, input2);
 			break;
 		case 6:
+			std::cout << "\nEnter the flightID you wish to interact with: ";
+			std::cin >> input;
+
+			for (int i = 0; i < COENAir.getFlights().size(); i++) {
+				if (input == COENAir.getFlights().at(i).getID()) {
+					flightPos = i;
+					break;
+				}
+				if (i == COENAir.getFlights().size() - 1) {
+					std::cout << "The inputed passenger could not be found inside the system. Please try again: ";
+					i = 0;
+					std::cin >> input;
+					continue;
+				}
+			}
+
+			std::cout << "Please review the following Passenger interactions:\n\n\t1.Add Passenger to Flight\n\t2.Remove Passenger from Flight\n\t3.Check if Passenger has Booked Flight\n\t4.Display Booking Information\nEnter your selection: ";
+			std::cin >> selection;
+			switch (selection) {
+			case 1:
+				std::cout << "\nIs the passenger already registered in the system?(y/n): ";
+				std::cin >> answer;
+				switch (answer) {
+				case 'n': {
+					Passenger pas1 = initializePassenger();
+					COENAir.getFlights().at(flightPos).addPassenger(pas1);
+					passenger.push_back(pas1); //DATE IS GLITCH for no reason. no clue why.
+					break;
+				}
+				case 'y':
+					std::cout << "Enter the passengerID: ";
+					for (int i = 0; i < passenger.size(); i++) {
+						std::cin >> input;
+						if (input == passenger.at(i).getID()) {
+							passPos = i;
+							COENAir.getFlights().at(flightPos).addPassenger(passenger.at(passPos));
+							break;
+						}
+						if (i == passenger.size() - 1) {
+							std::cout << "The inputed passenger could not be found inside the system. Please try again: ";
+							i = 0;
+							std::cin >> input;
+							continue;
+						}
+					}
+					break;
+				}
+				break;//allow for reusing of passengers, if not initialize new.
+			case 2:
+				std::cout << "\nEnter the passengerID you wish to remove from the flight: ";
+				std::cin >> input;
+
+				for (int i = 0; i < COENAir.getFlights().at(flightPos).getPassengers().size(); i++) { //for the vector passengers
+					if (input == COENAir.getFlights().at(flightPos).getPassengers().at(i).getID()) {
+						passPos = i; //when ID matches input
+						COENAir.getFlights().at(flightPos).removePassenger(COENAir.getFlights().at(flightPos).getPassengers().at(passPos).getID()); //remove Passenger with this ID.
+						break;
+					}
+					else if (i == COENAir.getFlights().at(flightPos).getPassengers().size() - 1)
+						std::cout << "Could not find the requested Passenger.";
+				}
+				break;
+			case 3:
+				std::cout << "\nEnter the passengerID you wish to check for: ";
+				std::cin >> input;
+
+				if (COENAir.getFlights().at(flightPos).searchPassenger(input)) std::cout << "Reservation confirmed, the skies await you.";
+				else std::cout << "Passenger not registered for this flight.";
+				break;
+			case 4:
+				COENAir.getFlights().at(flightPos).displayPassengers();
+				break;
+			}
+			break;
+		case 7:
 			std::cout << "\nThank you for consulting COENAir, exiting now...";
 			running = false; //set to false, disabling while loop.
 			break;
@@ -135,10 +226,38 @@ Flight initializeFlight() {
 	Date d2(stoi(dateStore[0]), stoi(dateStore[1]), stoi(dateStore[2]), stoi(dateStore[3]), stoi(dateStore[4]), 0);
 	dateStore = {};
 
-	Flight f1(stringStore[0], stringStore[2], d1, d2); //constructor inititalization of new flight object.
+	vector<Passenger> temp1{};
+	vector<Date> temp2{};
+
+	Flight f1(stringStore[0], stringStore[2], d1, d2, temp1, temp2); //constructor inititalization of new flight object.
 	
 	stringStore = {};
 	input = {};
 
 	return Flight(f1);
+}
+
+Passenger initializePassenger() {
+	std::vector<string> stringStore;
+	std::string input;
+
+	std::cout << "\nEnter the first name of the passenger: ";
+	std::cin >> input;
+	stringStore.push_back(input);
+
+	std::cout << "Enter the last name of the passenger: ";
+	std::cin >> input;
+	stringStore.push_back(input);
+	//FN, LN, AD, EM
+
+	std::cout << "Enter the address of the passenger: ";
+	std::cin.ignore();
+	std::getline(std::cin, input);
+	stringStore.push_back(input);
+
+	std::cout << "Enter the email of the passenger: ";
+	std::cin >> input;
+	stringStore.push_back(input);
+
+	return Passenger(stringStore[0], stringStore[1], stringStore[2], stringStore[3]);
 }

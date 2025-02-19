@@ -38,6 +38,16 @@ std::string Airline::getAddress() {
 	return address;
 }
 
+void Airline::setFlights(std::vector<Flight> FL) {
+	flights = FL;
+
+	return;
+}
+
+std::vector<Flight> &Airline::getFlights() {
+	return flights;
+}
+
 void Airline::addFlight(const Flight& f1) { //add Flight object to vector flights.
 
 	flights.push_back(f1);

@@ -7,7 +7,7 @@ Passenger::Passenger(std::string FN, std::string LN, std::string AD, std::string
 	ID = std::to_string(globalID++);
 }
 
-Passenger::Passenger(Passenger& p1) {
+Passenger::Passenger(const Passenger& p1) {
 	ID = p1.ID;
 
 	firstName = p1.firstName;

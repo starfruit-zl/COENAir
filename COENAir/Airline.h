@@ -31,6 +31,10 @@ public:
 
 	std::string getAddress();
 
+	void setFlights(std::vector<Flight>);
+
+	std::vector<Flight> &getFlights();
+
 	void addFlight(const Flight&);
 
 	void removeFlight(std::string flightID);
